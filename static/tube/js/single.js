@@ -179,15 +179,15 @@ function video_delete(){
     //フォーム内のデータを確認できる
     for (let v of data.entries() ){ console.log(v); }
 
-
     //Ajaxを送信する
+    //http://semooh.jp/jquery/api/ajax/jQuery.ajax/options/
     $.ajax({
         url: url,
         type: method,
         data: data,
-        processData: false,
-        contentType: false,
-        dataType: 'json'
+        processData: false, // dataをクエリ文字列に指定しない trueにするとcontentTypeの値はデフォルトで"application/x-www-form-urlencoded"になる
+        contentType: false, //content-typeヘッダの値。processDataでfalseを指定したので、これは無くても動く
+        dataType: 'json' //サーバーから返却されるデータはjson形式を指定
     }).done( function(data, status, xhr ) { 
 
         if (data.error){
@@ -202,6 +202,7 @@ function video_delete(){
     }).fail( function(xhr, status, error) {
         console.log(status + ":" + error );
     });
+
 
 
 
